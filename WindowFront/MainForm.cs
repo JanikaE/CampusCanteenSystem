@@ -1,11 +1,12 @@
+using Common.Dto;
+using Common.Utils;
 using System.IO.Ports;
-using System.Windows.Forms;
 
 namespace WindowFront
 {
     public partial class MainForm : Form
     {
-        private HttpClient _httpClient = new()
+        private readonly HttpClient _httpClient = new()
         {
             BaseAddress = new Uri(Config.Uri)
         };
@@ -30,11 +31,10 @@ namespace WindowFront
         {
             try
             {
-                var result = await _httpClient.GetAsync("/Home/GetTime");
-                string response = await result.Content.ReadAsStringAsync();
+                string result = await HttpUtils.GetAsyncString(_httpClient, "/Home/GetTime");
                 if (result != null)
                 {
-                    LableWebTips.Text = response.ToString();
+                    LableWebTips.Text = result.ToString();
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace WindowFront
             byte cmd;
             byte err;
 
-            byte[] CardId = new byte[4];
+            byte[] cardId = new byte[4];
 
             bool revflag;
 
@@ -168,9 +168,9 @@ namespace WindowFront
                                     //ªÒ»°ø®∫≈
                                     for (int i = 0; i < 4; i++)
                                     {
-                                        CardId[i] = RevDataBuffer[i + 2];
+                                        cardId[i] = RevDataBuffer[i + 2];
                                     }
-                                    string strString = ByteToHexStr(CardId, 4);
+                                    string strString = ByteToHexStr(cardId, 4);
                                     ChangeCard(strString);
                                     break;
                                 default:
@@ -227,10 +227,25 @@ namespace WindowFront
 
         #endregion
 
-        private void ChangeCard(string cardID)
+        private async void ChangeCard(string cardId)
         {
-            CardID = cardID;
-            TextBoxName.Text = cardID;
+            if (cardId != string.Empty)
+            {
+                Student student = await HttpUtils.GetAsync<Student>(_httpClient, $"/Student/GetStudentByCardID?cardId={cardId}");
+                if (student != null)
+                {
+                    TextBoxName.Text = student.Name;
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                CardID = string.Empty;
+                TextBoxName.Text = string.Empty;
+            }
         }
     }
 }

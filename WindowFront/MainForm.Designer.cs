@@ -36,6 +36,7 @@
             LableWebTips = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
             TextBoxName = new TextBox();
+            LableName = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -101,24 +102,37 @@
             // 
             tableLayoutPanel3.ColumnCount = 1;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(TextBoxName, 0, 0);
+            tableLayoutPanel3.Controls.Add(TextBoxName, 0, 1);
+            tableLayoutPanel3.Controls.Add(LableName, 0, 0);
             tableLayoutPanel3.Location = new Point(592, 73);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 3;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 52.1052628F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 47.8947372F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 159F));
+            tableLayoutPanel3.RowCount = 4;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 47.12644F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 52.87356F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 242F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel3.Size = new Size(181, 350);
             tableLayoutPanel3.TabIndex = 3;
             // 
             // TextBoxName
             // 
+            TextBoxName.Anchor = AnchorStyles.Left;
             TextBoxName.Enabled = false;
-            TextBoxName.Location = new Point(3, 3);
+            TextBoxName.Location = new Point(3, 50);
             TextBoxName.Name = "TextBoxName";
             TextBoxName.ReadOnly = true;
             TextBoxName.Size = new Size(125, 27);
             TextBoxName.TabIndex = 0;
+            // 
+            // LableName
+            // 
+            LableName.Anchor = AnchorStyles.Left;
+            LableName.AutoSize = true;
+            LableName.Location = new Point(3, 10);
+            LableName.Name = "LableName";
+            LableName.Size = new Size(54, 20);
+            LableName.TabIndex = 1;
+            LableName.Text = "姓名：";
             // 
             // MainForm
             // 
@@ -145,5 +159,6 @@
         private Label LabelPortTips;
         private TableLayoutPanel tableLayoutPanel3;
         private TextBox TextBoxName;
+        private Label LableName;
     }
 }
