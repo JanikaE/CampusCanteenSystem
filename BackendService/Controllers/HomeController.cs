@@ -6,8 +6,13 @@ namespace BackendService.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        public HomeController()
+        private CustomContext dbContext;
+
+        public HomeController(CustomContext dbContext)
         {
+            this.dbContext = dbContext;
+
+            dbContext.Database.EnsureCreated();
         }
 
         [HttpGet]

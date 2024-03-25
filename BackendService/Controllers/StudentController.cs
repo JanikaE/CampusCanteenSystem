@@ -16,7 +16,6 @@ namespace BackendService.Controllers
         {
             Student student = new()
             {
-                Id = 1,
                 CardId = cardId,
                 Name = "aa"
             };
