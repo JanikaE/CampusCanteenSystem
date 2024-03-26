@@ -1,4 +1,4 @@
-using Common.Dto;
+using Common.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackendService
@@ -18,5 +18,11 @@ namespace BackendService
         }
 
         public DbSet<Student> Students { get; set; }
+
+        public DbSet<Parent> Parents { get; set; }
+
+        public DbSet<Dish> Dishes { get; set; }
+
+        public DbSet<Consume> Consumes { get; set; }
     }
 }

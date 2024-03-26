@@ -1,5 +1,6 @@
-﻿using Common.Dto;
+﻿using Common.Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace BackendService.Controllers
@@ -8,18 +9,28 @@ namespace BackendService.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        public StudentController() { }
+        private readonly CustomContext dbContext;
+
+        public StudentController(CustomContext dbContext)
+        {
+            this.dbContext = dbContext;
+
+            dbContext.Database.EnsureCreated();
+        }
 
         [HttpGet]
         [Route("/Student/GetStudentByCardID")]
-        public async Task<Student> GetStudentByCardID([Required]string cardId)
+        public async Task<Student?> GetStudentByCardID([Required]string cardId)
         {
-            Student student = new()
+            try
             {
-                CardId = cardId,
-                Name = "aa"
-            };
-            return student;
+                Student student = await dbContext.Students.FirstAsync(n => n.CardId == cardId);
+                return student;
+            }
+            catch
+            {
+                return Student.None;
+            }
         }
     }
 }

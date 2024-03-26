@@ -1,4 +1,4 @@
-using Common.Dto;
+using Common.Entity;
 using Common.Utils;
 using System.IO.Ports;
 
@@ -16,29 +16,23 @@ namespace WindowFront
         public MainForm()
         {
             InitializeComponent();
-            Initialize();
-        }
-
-        private void Initialize()
-        {
-            InitWeb();
             InitPort();
         }
 
         #region Web
 
-        private async void InitWeb()
+        private async void TimerNet_Tick(object sender, EventArgs e)
         {
             try
             {
-                string result = await HttpUtils.GetAsyncString(_httpClient, "/Home/GetTime");
+                string result = await HttpUtils.GetAsyncString(_httpClient, "/Home/Test");
                 if (result != null)
                 {
-                    LableWebTips.Text = result.ToString();
+                    LableWebTips.Text = "网络正常";
                 }
                 else
                 {
-                    LableWebTips.Text = "null";
+                    LableWebTips.Text = "网络未连接";
                 }
             }
             catch
@@ -235,6 +229,7 @@ namespace WindowFront
                 if (student != null)
                 {
                     TextBoxName.Text = student.Name;
+                    TextBoxName.Text = student.Money.ToString();
                 }
                 else
                 {

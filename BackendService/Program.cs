@@ -30,7 +30,6 @@ namespace BackendService
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();

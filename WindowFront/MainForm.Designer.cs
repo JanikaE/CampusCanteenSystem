@@ -37,6 +37,9 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             TextBoxName = new TextBox();
             LableName = new Label();
+            TimerNet = new System.Windows.Forms.Timer(components);
+            LableMoney = new Label();
+            TextBoxMoney = new TextBox();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
@@ -104,13 +107,16 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Controls.Add(TextBoxName, 0, 1);
             tableLayoutPanel3.Controls.Add(LableName, 0, 0);
+            tableLayoutPanel3.Controls.Add(LableMoney, 0, 3);
+            tableLayoutPanel3.Controls.Add(TextBoxMoney, 0, 4);
             tableLayoutPanel3.Location = new Point(592, 73);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 4;
+            tableLayoutPanel3.RowCount = 5;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 47.12644F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 52.87356F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 242F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle());
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 192F));
             tableLayoutPanel3.Size = new Size(181, 350);
             tableLayoutPanel3.TabIndex = 3;
             // 
@@ -118,7 +124,7 @@
             // 
             TextBoxName.Anchor = AnchorStyles.Left;
             TextBoxName.Enabled = false;
-            TextBoxName.Location = new Point(3, 50);
+            TextBoxName.Location = new Point(3, 69);
             TextBoxName.Name = "TextBoxName";
             TextBoxName.ReadOnly = true;
             TextBoxName.Size = new Size(125, 27);
@@ -128,11 +134,37 @@
             // 
             LableName.Anchor = AnchorStyles.Left;
             LableName.AutoSize = true;
-            LableName.Location = new Point(3, 10);
+            LableName.Location = new Point(3, 16);
             LableName.Name = "LableName";
             LableName.Size = new Size(54, 20);
             LableName.TabIndex = 1;
             LableName.Text = "姓名：";
+            // 
+            // TimerNet
+            // 
+            TimerNet.Enabled = true;
+            TimerNet.Interval = 5000;
+            TimerNet.Tick += TimerNet_Tick;
+            // 
+            // LableMoney
+            // 
+            LableMoney.Anchor = AnchorStyles.Left;
+            LableMoney.AutoSize = true;
+            LableMoney.Location = new Point(3, 125);
+            LableMoney.Name = "LableMoney";
+            LableMoney.Size = new Size(54, 20);
+            LableMoney.TabIndex = 2;
+            LableMoney.Text = "余额：";
+            // 
+            // TextBoxMoney
+            // 
+            TextBoxMoney.Anchor = AnchorStyles.Left;
+            TextBoxMoney.Enabled = false;
+            TextBoxMoney.Location = new Point(3, 240);
+            TextBoxMoney.Name = "TextBoxMoney";
+            TextBoxMoney.ReadOnly = true;
+            TextBoxMoney.Size = new Size(125, 27);
+            TextBoxMoney.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -160,5 +192,8 @@
         private TableLayoutPanel tableLayoutPanel3;
         private TextBox TextBoxName;
         private Label LableName;
+        private System.Windows.Forms.Timer TimerNet;
+        private Label LableMoney;
+        private TextBox TextBoxMoney;
     }
 }

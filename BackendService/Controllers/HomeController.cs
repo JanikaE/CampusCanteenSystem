@@ -16,6 +16,13 @@ namespace BackendService.Controllers
         }
 
         [HttpGet]
+        [Route("/Home/Test")]
+        public string Test()
+        {
+            return "true";
+        }
+
+        [HttpGet]
         [Route("/Home/GetTime")]
         public string GetTime()
         {
